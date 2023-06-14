@@ -5,10 +5,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Admin\BackupController;
+use App\Http\Controllers\Admin\DataRestoreController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 
 // logout
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
 // register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -54,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/post/{post}', [PostController::class, 'update'])->name('post.update');
     Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
   });
+  Route::post('/comment/{postId}/store',[CommentController::class, 'store'])->name('comment.store');
   Route::post('/comment/{commentId}',[CommentController::class, 'reply'])->name('comment.reply');
 });
 Route::post('/like/{postId}', [LikeController::class, 'addLike'])->middleware('auth')->name('like.add');

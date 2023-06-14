@@ -5,7 +5,10 @@
 @section('content')
 <div class="row">
   <div class="col-xl-6 col-md-12 mb-4">
-    @include('admin.components.card',['color'=>'primary','title'=>'Tổng bài viết'])
+    @include('admin.components.card',['color'=>'primary','title'=>'Tổng bài viết đã duyệt','approvedCount' => $approvedCount,'time'=>'1 tháng trước'])
+  </div>
+  <div class="col-xl-6 col-md-12 mb-4">
+    @include('admin.components.card',['color'=>'danger','title'=>'Tổng bài viết chưa duyệt','pendingCount' => $pendingCount,'time'=>'Hiện tại'])
   </div>
 </div>
 <h2>Section title</h2>
