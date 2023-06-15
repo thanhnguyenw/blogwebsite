@@ -77,6 +77,7 @@
                 </a>
                 @if(count($menu->allChildren))
                 <ul class="dropdown-menu dropdown-menu-dark">
+
                   @include('client.components.submenu', ['children' => $menu->allChildren])
                 </ul>
                 @endif
