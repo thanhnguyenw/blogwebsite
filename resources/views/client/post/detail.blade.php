@@ -2,7 +2,6 @@
 @section('title', 'Home')
 @section('header', 'Blog Home')
 @section('content')
-
 <div class="border p-3 mb-4 rounded shadow-sm bg-body">
   <div class=" mb-3  " style="--bs-breadcrumb-divider: '\\|/';" aria-label="breadcrumb">
     <div class="breadcrumb px-2 border-top border-bottom border-dark">
