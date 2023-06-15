@@ -48,8 +48,11 @@
   <div class="row d-flex justify-content-center">
     <div class="col-12">
       <div class="card border-0">
-        <div  class="card-body p-4">
-          @foreach ($post->comments as $comment)
+        <div class="card-body p-4">
+          @if (!$post->comments->count())
+          <p class="text-center">Chưa có bình luận</p>
+          @endif
+          @foreach ($post->comments->sortByDesc('created_at') as $comment)
           <!-- Hiển thị thông tin về comment -->
           <div id="comment-{{ $comment->id }}" class="d-flex flex-start mt-4">
             <img class="rounded-circle shadow-1-strong me-3"
@@ -86,7 +89,7 @@
                     </div>
                     <div class="float-end mt-2 pt-1">
                       <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
-                      <button type="button" class="btn btn-outline-primary btn-sm" >Cancel</button>
+                      <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
                     </div>
                   </form>
                 </div>
@@ -121,6 +124,25 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="mt-3">
+    <h5 class="my-3">Tạo bình luận</h5>
+    <form action="{{ route('comment.store',['postId' => $post->id]) }}" method="post">
+      @csrf
+      <div class="d-flex flex-start w-100">
+        <img class="rounded-circle shadow-1-strong me-3"
+          src="{{ asset('uploads/' . Auth::user()->avatar) }}" alt="avatar" width="40"
+          height="40" />
+        <div class="form-outline w-100">
+          <textarea class="form-control" id="textAreaExample" rows="4" name="content"
+            style="background: #fff;"></textarea>
+          <label class="form-label" for="textAreaExample">Message</label>
+        </div>
+      </div>
+      <div class="text-end mt-2 pt-1">
+        <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+      </div>
+    </form>
   </div>
 </div>
 @endsection
@@ -191,7 +213,6 @@ function getLike() {
 
 
     $('.reply-btn').click(function() {
-      console.log('click');
       $(this).closest('.comment-container').find('.reply-form').toggleClass('d-none');
     });
     
