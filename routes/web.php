@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\DataRestoreController;
+use App\Http\Controllers\Admin\CommentAdminController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 
 /*
@@ -75,4 +76,7 @@ Route::post('/admin/category', [CategoryController::class, 'store'])->middleware
 Route::get('/admin/category/{category}/edit', [CategoryController::class, 'edit'])->middleware('auth')->middleware('admin')->name('category.edit');
 Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->middleware('auth')->middleware('admin')->name('category.update');
 Route::delete('/admin/category/{category}', [CategoryController::class, 'destroy'])->middleware('auth')->middleware('admin')->name('category.destroy');
-
+//admin comment
+Route::get('/admin/comment', [CommentAdminController::class, 'index'])->middleware('auth')->middleware('admin')->name('comment.index');
+Route::get('/admin/comment/{comment_id}', [CommentAdminController::class, 'show'])->middleware('auth')->middleware('admin')->name('admin.comment.show');
+Route::post('/admin/comment/{comment_id}', [CommentAdminController::class, 'reply'])->middleware('auth')->middleware('admin')->name('admin.comment.reply');
