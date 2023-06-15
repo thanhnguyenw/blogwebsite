@@ -6,6 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\BackupController;
@@ -58,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
   });
   Route::post('/comment/{postId}/store',[CommentController::class, 'store'])->name('comment.store');
   Route::post('/comment/{commentId}',[CommentController::class, 'reply'])->name('comment.reply');
+	Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 });
 Route::post('/like/{postId}', [LikeController::class, 'addLike'])->middleware('auth')->name('like.add');
 Route::get('/like/check/{postId}', [LikeController::class, 'checkLike'])->middleware('auth')->name('like.check');
