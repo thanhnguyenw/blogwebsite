@@ -56,7 +56,9 @@
           <!-- Hiển thị thông tin về comment -->
           <div id="comment-{{ $comment->id }}" class="d-flex flex-start mt-4">
             <img class="rounded-circle shadow-1-strong me-3"
-              src="{{ asset('uploads/' . $comment->user->avatar) }}" alt="avatar" width="40"
+              src="@if ($comment->user->avatar)
+              {{ asset('uploads/' . $comment->user->avatar) }}
+              @endif" alt="avatar" width="40"
               height="40" />
             <div class="flex-grow-1 flex-shrink-1">
               <div class="comment-container">
@@ -79,7 +81,11 @@
                     @csrf
                     <div class="d-flex flex-start w-100">
                       <img class="rounded-circle shadow-1-strong me-3"
-                        src="{{ asset('uploads/' . Auth::user()->avatar) }}" alt="avatar" width="40"
+                        src="
+                          @if (Auth::user()->avatar)
+                          {{ asset('uploads/' . Auth::user()->avatar) }}
+                          @endif
+                        " alt="avatar" width="40"
                         height="40" />
                       <div class="form-outline w-100">
                         <textarea class="form-control" id="textAreaExample" rows="4" name="content"
@@ -131,7 +137,11 @@
       @csrf
       <div class="d-flex flex-start w-100">
         <img class="rounded-circle shadow-1-strong me-3"
-          src="{{ asset('uploads/' . Auth::user()->avatar) }}" alt="avatar" width="40"
+        src="
+        @if (Auth::check() && Auth::user()->avatar)
+        {{ asset('uploads/' . Auth::user()->avatar) }}
+        @endif
+      " alt="avatar" width="40"
           height="40" />
         <div class="form-outline w-100">
           <textarea class="form-control" id="textAreaExample" rows="4" name="content"
