@@ -12,6 +12,8 @@
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
     crossorigin="anonymous">
     <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     
     @yield('css-custom')
@@ -51,17 +53,12 @@
              
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link {{Request::is('admin/browse') ? 'active' : ''}}" href="{{ route('admin.browse')}}">
                 <span data-feather="file"></span>
-                Orders
+                Duyệt bài
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="shopping-cart"></span>
-                Products
-              </a>
-            </li>
+           
             <li class="nav-item">
               <a class="nav-link {{ Request::is('admin/comment*') ? 'active' : '' }}" href="{{ route('comment.index') }} ">
                 <span data-feather="users"></span>
