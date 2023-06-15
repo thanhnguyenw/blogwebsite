@@ -12,6 +12,8 @@
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
     crossorigin="anonymous">
     <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     
     @yield('css-custom')
