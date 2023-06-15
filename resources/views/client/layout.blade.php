@@ -89,7 +89,9 @@
           <li class="nav-item"><a
               class="nav-link {{ request()->routeIs('post.index') ? 'active' : '' }}"
               href="{{ route('post.index') }}">Bài viết</a></li>
-          
+					<li class="nav-item"><a
+								class="nav-link {{ request()->routeIs('profile.index') ? 'active' : '' }}"
+								href="{{ route('profile.index') }}">Thông tin</a></li>  
           <li class="nav-item"><a
               class="nav-link"
               href="{{ route('logout') }}">Đăng xuất</a></li>
@@ -109,10 +111,10 @@
   <div class="container">
     <div class="row">
       <!-- Blog entries-->
-      <div class="@if(request()->is('post*') || request()->is('login') || request()->is('register')) col-lg-12 @else col-lg-8 @endif">
+      <div class="@if(request()->is('post*') || request()->is('login') || request()->is('register') || request()->is('profile*')) col-lg-12 @else col-lg-8 @endif">
         @yield('content')
       </div>
-      <div class="col-lg-4 @if(request()->is('post*') || request()->is('login') || request()->is('register')) d-none @endif">
+      <div class="col-lg-4 @if(request()->is('post*') || request()->is('login') || request()->is('register')|| request()->is('profile*')) d-none @endif">
         @include('client.components.side_widgets', ['categories' => $categories])
       </div>
     </div>
