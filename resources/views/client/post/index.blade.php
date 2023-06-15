@@ -50,9 +50,6 @@
               <span class="btn btn-danger">Ngừng duyệt</span>
             @endif
             </div>
-
-                
-          
         </td>
           <td class="d-flex justify-content-center gap-2">
             <a href="{{route('post.show', $post->id)}}" class="btn btn-secondary">Xem chi tiết</a>

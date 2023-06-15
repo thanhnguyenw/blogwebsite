@@ -76,7 +76,6 @@
                 </a>
                 @if(count($menu->allChildren))
                 <ul class="dropdown-menu dropdown-menu-dark">
-
                   @include('client.components.submenu', ['children' => $menu->allChildren])
                 </ul>
                 @endif
@@ -95,6 +94,12 @@
           <li class="nav-item"><a
               class="nav-link"
               href="{{ route('logout') }}">Đăng xuất</a></li>
+
+          @if (Auth::user()->role == 0)
+          <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Trang Admin</a></li>
+          @endif
+          <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">Đăng xuất</a></li>
+
             @else 
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
               href="{{ route('login') }}">Đăng nhập</a></li>

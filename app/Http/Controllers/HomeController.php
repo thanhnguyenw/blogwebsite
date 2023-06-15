@@ -18,7 +18,7 @@ class HomeController extends Controller
         ->take(5)
         ->get();
 
-        $posts = $posts = Post::orderBy('created_at', 'desc')->where('status', 'approved')->paginate(4);
+        $posts = Post::orderBy('created_at', 'desc')->where('status', 'approved')->paginate(4);
 
         
         return view('client.home', compact('posts', 'posts_slide'));
