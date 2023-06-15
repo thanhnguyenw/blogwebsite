@@ -95,6 +95,9 @@
           <li class="nav-item"><a
               class="nav-link"
               href="{{ route('logout') }}">Đăng xuất</a></li>
+							@if (Auth::user()->role == 0)
+							<li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Trang Admin</a></li>
+							@endif
             @else 
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
               href="{{ route('login') }}">Đăng nhập</a></li>
