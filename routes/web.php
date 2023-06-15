@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
   });
   Route::post('/comment/{commentId}',[CommentController::class, 'reply'])->name('comment.reply');
 	Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+	Route::put('/profile/{profileId}', [ProfileController::class, 'update'])->name('profile.update');
 });
 Route::post('/like/{postId}', [LikeController::class, 'addLike'])->middleware('auth')->name('like.add');
 Route::get('/like/check/{postId}', [LikeController::class, 'checkLike'])->middleware('auth')->name('like.check');
