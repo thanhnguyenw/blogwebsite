@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         // $posts = Post::all();
         // my post and pagination simple
-        $posts = Post::where('user_id', Auth::user()->id)->paginate(5);
+        $posts = Post::where('user_id', Auth::user()->id)->latest()->paginate(5);
         foreach ($posts as $post) {
             $selectedCategories = $post->categories()->pluck('name')->implode(', ');
             $post->selectedCategories = $selectedCategories;
@@ -144,8 +144,10 @@ class PostController extends Controller
                 'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra tính hợp lệ của file thumbnail
             ]);
 
-            // Xóa file đã tải lên trước đó
-            unlink(public_path('uploads/' . $blog->thumbnail));
+        //   check file exists
+            if(file_exists(public_path('uploads/' . $blog->thumbnail))){
+                unlink(public_path('uploads/' . $blog->thumbnail));
+            }
 
             $thumbnail = $request->file('thumbnail');
             $newName = time() . "." . $thumbnail->getClientOriginalExtension();
@@ -169,7 +171,7 @@ class PostController extends Controller
     {
         $blog = Post::find($id);
         $blog->delete();
-        return redirect()->route('post.index');
+        return redirect()->route('post.index')->with('success', 'Dữ liệu đã được xóa');
     }
 
     public function showByCategory($categoryId)
