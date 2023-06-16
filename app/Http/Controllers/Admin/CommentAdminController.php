@@ -12,13 +12,14 @@ class CommentAdminController extends Controller
 {
     //
 		public function index(){
-			$comments = Comment::all();
+			$comments = Comment::latest()->get();
 			$replys = Reply::all();
 			return view('admin.comment.index', compact('comments' , 'replys'));
 		}
 		public function show($id){
 			$comment = Comment::find($id);
-			$replys = Reply::where('comment_id', $id)->get();
+			$replys = Reply::where('comment_id', $id)->get() ;
+
 			return view('admin.comment.show', compact('comment' , 'replys'));
 		}
 		public function reply(Request $request , $id){
