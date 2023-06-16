@@ -12,11 +12,11 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-						@if ($user->avatar)				
+						@if ($user->avatar && file_exists(public_path('uploads/'.$user->avatar)))				
 						<img src="{{ asset('uploads/'.$user->avatar) }}" alt="avatar"
 						class="rounded-circle " width="150px" height="150px">
 						@else
-						<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+						<img src="{{ asset('uploads/OIP.jfif') }}" alt="avatar" alt="avatar"
 						class="rounded-circle img-fluid" style="width: 150px;">
 						@endif
 						<input type="file" name="avatar" class="form-control mt-3" name="avatar">
