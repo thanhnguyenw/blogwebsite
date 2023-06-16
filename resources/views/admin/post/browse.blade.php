@@ -54,7 +54,11 @@
       </td>
      </tr>
       @endforeach
-   
+   <tr>
+    <td colspan="8">
+      {{ $posts->links('custom.pagination') }}
+    </td>
+   </tr>
     </tbody>
   </table>
 </div>
