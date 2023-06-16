@@ -38,8 +38,8 @@
 					@foreach ($comments as $comment)
 					<tr>
 						<td>{{ $comment->post->title }}</td>
-						<td><img src="@if ($comment->user->avatar) {{ asset('uploads/' . $comment->user->avatar) }} @else
-							https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp @endif" alt="" width="50px" height="50px"></td>
+						<td><img src="@if ($comment->user->avatar == null && file_exists('uploads/' . $comment->user->avatar)) {{ asset('uploads/OIP.jfif') }} @else
+						{{ asset('uploads/' . $comment->user->avatar) }} @endif" alt="" width="50px" height="50px"></td>
 						<td>{{ $comment->user->name }}</td>
 						<td>{{ $comment->content }}</td>
 						<td>{{ $comment->created_at }}</td>
