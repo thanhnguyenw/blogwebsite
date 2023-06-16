@@ -16,18 +16,18 @@ class ProfileController extends Controller
 		return view('client.profile.index', compact('user'));
 	}
 
-	public function update(Request $request , $id)
+	public function update(Request $request, $id)
 	{
 		$user = User::findOrFail($id);
 		$request->validate([
 			'name' => 'required',
-	]);
-		$user->name=$request->name;
-		if($request->hasFile('avatar')){
+		]);
+		$user->name = $request->name;
+		if ($request->hasFile('avatar')) {
 			$request->validate([
 				'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			]);
-			if($user->avatar != null){
+			if ($user->avatar != null && file_exists(public_path('uploads/' . $user->avatar))) {
 				unlink(public_path('uploads/' . $user->avatar));
 			}
 			$avatar = $request->file('avatar');
