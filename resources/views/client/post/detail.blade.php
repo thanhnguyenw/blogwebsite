@@ -56,7 +56,7 @@
           <!-- Hiển thị thông tin về comment -->
           <div id="comment-{{ $comment->id }}" class="d-flex flex-start mt-4">
             <img class="rounded-circle shadow-1-strong me-3"
-              src="@if ($comment->user->avatar)
+              src="@if ($comment->user->avatar != null && file_exists('uploads/' . $comment->user->avatar))
               {{ asset('uploads/' . $comment->user->avatar) }}
               @else
               {{ asset('uploads/OIP.jfif') }}
@@ -84,7 +84,7 @@
                     <div class="d-flex flex-start w-100">
                       <img class="rounded-circle shadow-1-strong me-3"
                         src="
-                          @if (Auth::user()->avatar)
+                          @if (Auth::check() && Auth::user()->avatar != null && file_exists('uploads/' . Auth::user()->avatar))
                           {{ asset('uploads/' . Auth::user()->avatar) }}
                           @else
                           {{ asset('uploads/OIP.jfif') }}
@@ -111,7 +111,7 @@
                 <a class="me-3" href="#">
                   <img class="rounded-circle shadow-1-strong"
                     src="
-                    @if ($reply->user->avatar)
+                    @if ($reply->user->avatar != null && file_exists('uploads/' . $reply->user->avatar))
                     {{ asset('uploads/' . $reply->user->avatar) }}
                     @else
                     {{ asset('uploads/OIP.jfif') }}
@@ -148,7 +148,7 @@
       <div class="d-flex flex-start w-100">
         <img class="rounded-circle shadow-1-strong me-3"
         src="
-        @if (Auth::check() && Auth::user()->avatar)
+        @if (Auth::check() && Auth::user()->avatar != null && file_exists('uploads/' . Auth::user()->avatar))
         {{ asset('uploads/' . Auth::user()->avatar) }}
         @else
         {{ asset('uploads/OIP.jfif') }}
