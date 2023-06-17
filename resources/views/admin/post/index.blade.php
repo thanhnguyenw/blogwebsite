@@ -27,6 +27,7 @@
         <th scope="col">Ảnh đại diện</th>
         <th scope="col">Tiêu đề</th>
         <th scope="col">Bài viết đặc sắc</th>
+        <th scope="col">Số lượt thích</th>
         <th scope="col">Hành động</th>
       </tr>
     </thead>
@@ -37,8 +38,8 @@
         <td>{{ $post->created_at->diffForHumans() }}</td>
         <td>{{ $post->user->name }}</td>
         <td>
-          @if ($post->image)
-          <img src="{{ asset('uploads/' . $post->image) }}" alt="" width="100px">
+          @if ($post->thumbnail)
+          <img src="{{ asset('uploads/' . $post->thumbnail) }}" alt="" width="100px">
           @endif
         </td>
         <td>{{ $post->title }}</td>
@@ -46,12 +47,15 @@
           @include('admin.components.check_featured')
         </td>
         <td>
+          {{ $post->likes->count() }}
+        </td>
+        <td>
           <a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-primary">Xem</a>
         </td>
       </tr>
       @endforeach
       <tr>
-        <td colspan="7">
+        <td colspan="8">
           {{ $posts->links('custom.pagination') }}
         </td>
       </tr>
