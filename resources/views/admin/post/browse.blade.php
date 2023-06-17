@@ -21,6 +21,7 @@
         <th scope="col">Ảnh đại diện</th>
         <th scope="col">Mô tả ngắn</th>
         <th scope="col">Đánh dấu là bài đặc sắc</th>
+        <th scope="col">Chi tiết</th>
         <th scope="col">Hành động</th>
       </tr>
     </thead>
@@ -28,7 +29,7 @@
      @foreach ($posts as $key => $post)
      <tr>
       <th scope="row">{{ ++$key }}</th>
-      <td>{{ $post->updated_at->diffForHumans() }}</td>
+      <td>{{ $post->created_at->diffForHumans() }}</td>
       <td>{{ $post->user->name }}</td>
       <td>{{ $post->title }}</td>
       <td>
@@ -38,12 +39,11 @@
       </td>
       <td class="text-wrap">{!! $post->short_content !!}</td>
       <td>
-        <form class="featureForm" action="{{ route('admin.post.feature', $post->id)}}" method="post">
-          @csrf
-          <div class="form-check form-switch">
-            <input class="form-check-input featureCheckbox" type="checkbox" @if ($post->is_featured == 1) checked @endif>
-          </div>
-        </form>
+        @include('admin.components.check_featured')
+
+      </td>
+      <td>
+        <a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-secondary">Xem</a>
       </td>
       <td>
         <form action="{{ route('admin.post.status', $post->id)}}" method="post">
@@ -55,7 +55,7 @@
      </tr>
       @endforeach
    <tr>
-    <td colspan="8">
+    <td colspan="9">
       {{ $posts->links('custom.pagination') }}
     </td>
    </tr>
@@ -65,13 +65,5 @@
 
 @endsection
 @section('js-custom')
-<script>
-   $(document).ready(function() {
-    $('.featureCheckbox').on('change', function() {
-      var form = $(this).closest('form');
-      form.submit();
-    });
-  });
-</script>
-
+<script src="{{asset('js/check_featured.js')}}"></script>
 @endsection

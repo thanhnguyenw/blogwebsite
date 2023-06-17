@@ -6,13 +6,13 @@
 <div class="">
   <div class="row">
     <div class="col text-end">
-      <a class=" btn btn-primary" href="{{route('admin.post.index')}}" class="btn btn-primary">Quay lại</a>
+      <button class=" btn btn-primary" onclick="window.history.back()" class="btn btn-primary">Quay lại</button>
     </div>
   </div>
  <div class="w-75 mx-auto">
   <h2 class="text-center mt-4">{{$post->title}}</h2>
-  <div class="text-center">
-  <img src="{{asset("uploads/$post->thumbnail")}}"class="object-fit-cover" alt="">
+  <div class="text-center ">
+  <img src="{{asset("uploads/$post->thumbnail")}}"class="object-fit-cover w-100" alt="">
   </div>
   
   <p class="text-justify fw-bold">{!! $post->short_content !!}</p>
