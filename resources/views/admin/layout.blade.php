@@ -15,7 +15,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+  
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+      /* CSS */
+      .image img {
+        width: 100%;
+        height: auto;
+      }
+  
+    </style>
     @yield('css-custom')
     
     
@@ -49,6 +61,13 @@
               <a class="nav-link {{ Request::is('admin/category*') ? 'active' : '' }}" href="{{ route('category.index') }}">
                 <span data-feather="file"></span>
                 Danh mục
+              </a>
+             
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link {{ Request::is('admin/post*') ? 'active' : '' }}" href="{{ route('admin.post.index') }}">
+                <span data-feather="file"></span>
+                Bài viết
               </a>
              
             </li>
