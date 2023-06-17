@@ -78,5 +78,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
   Route::get('/browse', [AdminPostController::class, 'browse'])->name('admin.browse');
   Route::post('/post/feature/{postId}', [AdminPostController::class, 'feature'])->name('admin.post.feature');
   Route::post('/post/status/{postId}', [AdminPostController::class, 'status'])->name('admin.post.status');
-
+  Route::get('/post', [AdminPostController::class, 'index'])->name('admin.post.index');
+  Route::get('/post/{id}/show', [AdminPostController::class, 'show'])->name('admin.post.show');
 });
