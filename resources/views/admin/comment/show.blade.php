@@ -7,18 +7,6 @@
     <h2 class="col">
       Danh sách phản hồi
     </h2>
-    {{-- error session --}}
-    @if (session()->has('error'))
-    <div class="alert alert-danger">
-      {{ session()->get('error') }}
-    </div>
-    @endif
-    {{-- success session --}}
-    @if (session()->has('success'))
-    <div class="alert alert-success">
-      {{ session()->get('success') }}
-    </div>
-    @endif
   </div>
 	<div class="row">
 		<div class="table-responsive">
@@ -32,7 +20,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($replys as $reply)
+					@foreach ($comment->replies as $reply)
 					<tr>
 						<td><img src="@if ($reply->user->avatar) {{ asset('uploads/' . $reply->user->avatar) }} @else
 							https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp @endif" alt="" width="50px" height="50px"></td>
@@ -43,6 +31,5 @@
 				</tbody>
 			</table>
 		</div>
-		
 	</div>
 	@endsection
