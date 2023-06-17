@@ -9,6 +9,22 @@ use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
+    public function index(Request $request)
+    {
+        $search =   $request->search;
+        if ($search) {
+            $posts = Post::where('title', 'LIKE', "%{$search}%")->where('status', 'approved')->paginate(5);
+        } else {
+            $posts = Post::where('status', 'approved')->paginate(5);
+        }
+        return view('admin.post.index', compact('posts'));
+    }
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return view('admin.post.show', compact('post'));
+    }
+    
     // Phương thức để duyệt bài viết
     public function browse()
     {
