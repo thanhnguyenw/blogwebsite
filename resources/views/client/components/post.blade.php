@@ -1,5 +1,5 @@
 <div class="card mb-4">
-  <a href="#!"><img class="card-img-top"
+  <a href="{{ route('post.detail', ['postId' => $post->id]) }}"><img class="card-img-top"
       src="{{ asset('uploads/'.$post->thumbnail) }}" alt="..." /></a>
   <div class="card-body">
     <div class="small text-muted">{{ $post->created_at->diffForHumans() }}</div>

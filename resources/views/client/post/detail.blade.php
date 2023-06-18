@@ -38,7 +38,7 @@
   <div class="row">
     @foreach ($relatedPosts as $relatedPost)
     <div class="col-4">
-      @include('client.components.post_related', ['post' => $relatedPost])
+      @include('client.components.post_related', ['post' => $relatedPost,'postId' => $relatedPost->id])
     </div>
     @endforeach
   </div>
