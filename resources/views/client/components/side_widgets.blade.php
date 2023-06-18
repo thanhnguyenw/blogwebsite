@@ -28,8 +28,21 @@
       </div>
     </div>
     <!-- Side widget-->
+    <h3>Bình luận</h3>
     <div class="card mb-4">
-      <div class="card-header">Side Widget</div>
-      <div class="card-body">You can put anything you want inside of these side widgets. They
-        are easy to use, and feature the Bootstrap 5 card component!</div>
+      @foreach ($top_10_new_comment as $comment)
+        <a href="{{route('post.detail', ['postId' => $comment->post->id])}}" class="d-flex border-bottom p-1 gap-1 text-decoration-none">
+          <div class="">
+            @if ($comment->user->avatar != null && file_exists(public_path('uploads/' . $comment->user->avatar)))
+              <img src="{{ asset('uploads/' . $comment->user->avatar) }}" alt="" width="50px" height="50px">
+            @else
+              <img src="{{ asset('uploads/OIP.jfif') }}" alt="" width="50px" height="50px">
+            @endif
+          </div>
+          <div class="">
+            <p>{{ $comment->user->name }}: <span class="text-break">{{ Str::limit($comment->content, 50, '...') }}</span></p>
+          </div>
+        </a>
+
+      @endforeach
     </div>
