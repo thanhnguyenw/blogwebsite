@@ -16,11 +16,13 @@
         <div class="carousel-inner">
           @foreach ($posts_slide as $key => $item)
           <div class="carousel-item {{ $key == 0 ? 'active' : ''}}">
-            <img src="{{ asset('uploads/'.$item->thumbnail) }}" class="d-block w-100 object-fit-cover" style="max-height: 400px" alt="...">
+            <a href="{{route('post.detail', $item->id)}}">
+              <img src="{{ asset('uploads/'.$item->thumbnail) }}" class="d-block w-100 object-fit-cover" style="max-height: 400px" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>{{ $item->title }}</h5>
               <p>{!!$item->short_content !!}</p>  
             </div>  
+            </a>
           </div>
           @endforeach
         </div>
