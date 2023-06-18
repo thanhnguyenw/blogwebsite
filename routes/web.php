@@ -80,4 +80,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
   Route::get('/post', [AdminPostController::class, 'index'])->name('admin.post.index');
   Route::get('/post/{id}/show', [AdminPostController::class, 'show'])->name('admin.post.show');
   Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
+  Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
 });
