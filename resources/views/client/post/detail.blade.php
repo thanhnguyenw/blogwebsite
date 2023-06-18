@@ -11,8 +11,8 @@
         }}</p>
       <p class="py-1 breadcrumb-item mb-0">{{$comments->count()}} Bình luận</p>
 
-      <p class="py-1 breadcrumb-item mb-0">
-      <form id="likeForm" action="">
+      <p class="py-1 breadcrumb-item mb-0 d-flex gap-2 ">
+      <form id="likeForm" action="" class="">
         @csrf
         <input type="hidden" name="post_id" value="{{ $post->id }}">
         <p class="py-1 mb-0">Thích <button type="button" id="likeButton"
@@ -20,6 +20,9 @@
               style="color: rgb(244, 137, 155)"></i></button></p>
 
       </form>
+      <p class="mt-1">
+        {{ $post->likes->count() }}
+      </p>
       </p>
 
     </div>
