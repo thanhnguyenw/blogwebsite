@@ -12,6 +12,10 @@ class ProfileController extends Controller
 	public function index()
 	{
 		$user = Auth::user();
+		//check role
+		if ($user->role == 0) {
+			return view('admin.profile.index', compact('user'));
+		}
 		// Lấy thông tin cụ thể của người dùng đã đăng nhập
 		return view('client.profile.index', compact('user'));
 	}
