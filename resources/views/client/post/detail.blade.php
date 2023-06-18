@@ -1,6 +1,5 @@
 @extends('client.layout')
-@section('title', 'Home')
-@section('header', 'Blog Home')
+@section('title', 'Chi tiết bài viết')
 @section('content')
 <div class="border p-3 mb-4 rounded shadow-sm bg-body">
   <div class=" mb-3  " style="--bs-breadcrumb-divider: '\\|/';" aria-label="breadcrumb">
@@ -11,8 +10,8 @@
         }}</p>
       <p class="py-1 breadcrumb-item mb-0">{{$comments->count()}} Bình luận</p>
 
-      <p class="py-1 breadcrumb-item mb-0">
-      <form id="likeForm" action="">
+      <p class="py-1 breadcrumb-item mb-0 d-flex gap-2 ">
+      <form id="likeForm" action="" class="">
         @csrf
         <input type="hidden" name="post_id" value="{{ $post->id }}">
         <p class="py-1 mb-0">Thích <button type="button" id="likeButton"
@@ -20,6 +19,9 @@
               style="color: rgb(244, 137, 155)"></i></button></p>
 
       </form>
+      <p class="mt-1">
+        {{ $post->likes->count() }}
+      </p>
       </p>
 
     </div>
@@ -38,7 +40,7 @@
   <div class="row">
     @foreach ($relatedPosts as $relatedPost)
     <div class="col-4">
-      @include('client.components.post_related', ['post' => $relatedPost])
+      @include('client.components.post_related', ['post' => $relatedPost,'postId' => $relatedPost->id])
     </div>
     @endforeach
   </div>
@@ -56,7 +58,11 @@
           <!-- Hiển thị thông tin về comment -->
           <div id="comment-{{ $comment->id }}" class="d-flex flex-start mt-4">
             <img class="rounded-circle shadow-1-strong me-3"
-              src="{{ asset('uploads/' . $comment->user->avatar) }}" alt="avatar" width="40"
+              src="@if ($comment->user->avatar != null && file_exists('uploads/' . $comment->user->avatar))
+              {{ asset('uploads/' . $comment->user->avatar) }}
+              @else
+              {{ asset('uploads/OIP.jfif') }}
+              @endif" alt="avatar" width="40"
               height="40" />
             <div class="flex-grow-1 flex-shrink-1">
               <div class="comment-container">
@@ -69,7 +75,7 @@
                       class="small">
                       reply</span></a>
                 </div>
-                <p class="small mb-0">
+                <p class="small mb-0 text-break">
                   {{ $comment->content }}
                 </p>
                 @if (Auth::check())
@@ -79,7 +85,13 @@
                     @csrf
                     <div class="d-flex flex-start w-100">
                       <img class="rounded-circle shadow-1-strong me-3"
-                        src="{{ asset('uploads/' . Auth::user()->avatar) }}" alt="avatar" width="40"
+                        src="
+                          @if (Auth::check() && Auth::user()->avatar != null && file_exists('uploads/' . Auth::user()->avatar))
+                          {{ asset('uploads/' . Auth::user()->avatar) }}
+                          @else
+                          {{ asset('uploads/OIP.jfif') }}
+                          @endif
+                        " alt="avatar" width="40"
                         height="40" />
                       <div class="form-outline w-100">
                         <textarea class="form-control" id="textAreaExample" rows="4" name="content"
@@ -100,7 +112,13 @@
               <div class="d-flex flex-start mt-4">
                 <a class="me-3" href="#">
                   <img class="rounded-circle shadow-1-strong"
-                    src="{{ asset('uploads/' . $reply->user->avatar) }}" alt="avatar" width="40"
+                    src="
+                    @if ($reply->user->avatar != null && file_exists('uploads/' . $reply->user->avatar))
+                    {{ asset('uploads/' . $reply->user->avatar) }}
+                    @else
+                    {{ asset('uploads/OIP.jfif') }}
+                    @endif
+                    " alt="avatar" width="40"
                     height="40" />
                 </a>
                 <div class="flex-grow-1 flex-shrink-1">
@@ -111,7 +129,7 @@
                           $reply->created_at->diffForHumans() }}</span>
                       </p>
                     </div>
-                    <p class="small mb-0">
+                    <p class="small mb-0 text-break">
                       {{ $reply->content }}
                     </p>
                   </div>
@@ -131,7 +149,13 @@
       @csrf
       <div class="d-flex flex-start w-100">
         <img class="rounded-circle shadow-1-strong me-3"
-          src="{{ asset('uploads/' . Auth::user()->avatar) }}" alt="avatar" width="40"
+        src="
+        @if (Auth::check() && Auth::user()->avatar != null && file_exists('uploads/' . Auth::user()->avatar))
+        {{ asset('uploads/' . Auth::user()->avatar) }}
+        @else
+        {{ asset('uploads/OIP.jfif') }}
+        @endif
+      " alt="avatar" width="40"
           height="40" />
         <div class="form-outline w-100">
           <textarea class="form-control" id="textAreaExample" rows="4" name="content"

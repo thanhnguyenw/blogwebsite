@@ -13,22 +13,23 @@
     rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
     crossorigin="anonymous">
-    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
-    <script src="https://kit.fontawesome.com/86807bc2b2.js" crossorigin="anonymous"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+  <script src="https://kit.fontawesome.com/86807bc2b2.js" crossorigin="anonymous"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <link href="{{ asset('css/dropdown_hover.css') }}" rel="stylesheet">
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-/* CSS */
-.image img {
-  width: 100%;
-  height: auto;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    /* CSS */
+    .image img {
+      width: 100%;
+      height: auto;
+    }
 
   </style>
 </head>
@@ -76,6 +77,7 @@
                 </a>
                 @if(count($menu->allChildren))
                 <ul class="dropdown-menu dropdown-menu-dark">
+
                   @include('client.components.submenu', ['children' => $menu->allChildren])
                 </ul>
                 @endif
@@ -84,21 +86,26 @@
             </ul>
           </li>
           @if (Auth::check())
-          
+
           <li class="nav-item"><a
               class="nav-link {{ request()->routeIs('post.index') ? 'active' : '' }}"
               href="{{ route('post.index') }}">Bài viết</a></li>
-          @if (Auth::user()->role == 0)
-          <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Trang Admin</a></li>
-          @endif
+          <li class="nav-item"><a
+              class="nav-link {{ request()->routeIs('profile.index') ? 'active' : '' }}"
+              href="{{ route('profile.index') }}">Thông tin</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">Đăng xuất</a></li>
-            @else 
-            <li class="nav-item"><a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
+
+          @if (Auth::user()->role == 0)
+          <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Trang Admin</a>
+          </li>
+          @endif
+          @else
+          <li class="nav-item"><a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
               href="{{ route('login') }}">Đăng nhập</a></li>
           <li class="nav-item"><a
               class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
               href="{{ route('register') }}">Đăng Ký</a></li>
-              @endif
+          @endif
         </ul>
       </div>
     </div>
@@ -108,10 +115,12 @@
   <div class="container">
     <div class="row">
       <!-- Blog entries-->
-      <div class="@if(request()->is('post*') || request()->is('login') || request()->is('register')) col-lg-12 @else col-lg-8 @endif">
+      <div
+        class="@if(request()->is('post*') || request()->is('login') || request()->is('register') || request()->is('profile*')) col-lg-12 @else col-lg-8 @endif">
         @yield('content')
       </div>
-      <div class="col-lg-4 @if(request()->is('post*') || request()->is('login') || request()->is('register')) d-none @endif">
+      <div
+        class="col-lg-4 @if(request()->is('post*') || request()->is('login') || request()->is('register')|| request()->is('profile*')) d-none @endif">
         @include('client.components.side_widgets', ['categories' => $categories])
       </div>
     </div>
