@@ -1,6 +1,6 @@
 @extends('client.layout')
 @section('title', 'Home')
-@section('header', 'Blog Home')
+@section('header', 'Thông tin cá nhân')
 @section('content')
 <section style="background-color: #eee;">
 	<form action="{{ route('profile.update',["profileId" => $user->id]) }}" enctype="multipart/form-data" method="post">

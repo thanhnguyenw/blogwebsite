@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Home')
+@section('title', 'Danh sách danh mục')
 @section('header_title', 'Danh mục')
 @section('content')
 <div class="container">

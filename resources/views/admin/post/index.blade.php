@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Bài viết')
+@section('title', 'Danh sách bài viết')
     
 @section('header_title', 'Tổng quan bài viết')    
 @section('content')

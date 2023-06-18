@@ -1,7 +1,6 @@
 @extends('client.layout')
 
-@section('title', 'timf')
-@section('header', '')
+@section('title', 'tìm kiếm')
 @section('content')
       <h2 class="mb-3">
         @isset($category)

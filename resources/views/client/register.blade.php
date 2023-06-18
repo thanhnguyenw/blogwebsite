@@ -1,6 +1,5 @@
 @extends('client.layout')
 @section('title', 'Đăng ký')
-@section('header', 'trang đăng ký')
 @section('content')
 <div class="w-50 mx-auto py-5">
   {{-- session error --}}
