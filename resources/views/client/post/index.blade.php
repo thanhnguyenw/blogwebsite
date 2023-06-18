@@ -1,6 +1,5 @@
 @extends('client.layout')
-@section('title', 'Home')
-@section('header', 'Blog Home')
+@section('title', 'Danh sách bái viết')
 @section('content')
 <div class="container">
   <div class="row">

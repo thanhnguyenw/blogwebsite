@@ -1,6 +1,5 @@
 @extends('client.layout')
-@section('title', 'Home')
-@section('header', 'Blog Home')
+@section('title', 'Chi tiết bài viết')
 @section('content')
 <div class="border p-3 mb-4 rounded shadow-sm bg-body">
   <div class=" mb-3  " style="--bs-breadcrumb-divider: '\\|/';" aria-label="breadcrumb">

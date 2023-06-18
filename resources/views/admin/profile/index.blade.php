@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Dashboard')
+@section('title', 'Thông tin cá nhân')
 
 @section('header_title', 'Tổng quan')
 @section('content')
