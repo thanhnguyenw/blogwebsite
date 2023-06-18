@@ -34,14 +34,23 @@
 </head>
 <body>
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-    <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="#">Sign out</a>
+    <div class=" d-flex text-white align-items-center">
+      <div class="">
+        <a class="nav-link px-3" href="{{ route('admin.profile') }}">
+          @if (Auth::user()->avatar)
+            <img src="{{ asset('uploads/'.Auth::user()->avatar) }}" alt="" class="rounded-circle" width="40" height="40">
+          @else
+            <img src="{{ asset('uploads/OIP.jfif') }}" alt="" class="rounded-circle" width="40" height="40">
+          @endif
+          {{ Auth::user()->name }}
+        </a>
+      </div>
+      <div class="">
+        <a class="nav-link px-3" href="{{ route('logout') }}">Đăng xuất</a>
       </div>
     </div>
   </header>
@@ -89,6 +98,12 @@
               <a class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}" href="{{ route('admin.user.index') }} ">
                 <span data-feather="users"></span>
                 Thành viên
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('home') }} ">
+                <span data-feather="users"></span>
+                Trang người dùng
               </a>
             </li>
             
