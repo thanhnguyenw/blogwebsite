@@ -9,8 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\Admin\BackupController;
-use App\Http\Controllers\Admin\DataRestoreController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CommentAdminController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
@@ -80,4 +79,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
   Route::post('/post/status/{postId}', [AdminPostController::class, 'status'])->name('admin.post.status');
   Route::get('/post', [AdminPostController::class, 'index'])->name('admin.post.index');
   Route::get('/post/{id}/show', [AdminPostController::class, 'show'])->name('admin.post.show');
+  Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
 });
