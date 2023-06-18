@@ -76,7 +76,7 @@
                       class="small">
                       reply</span></a>
                 </div>
-                <p class="small mb-0">
+                <p class="small mb-0 text-break">
                   {{ $comment->content }}
                 </p>
                 @if (Auth::check())
@@ -130,7 +130,7 @@
                           $reply->created_at->diffForHumans() }}</span>
                       </p>
                     </div>
-                    <p class="small mb-0">
+                    <p class="small mb-0 text-break">
                       {{ $reply->content }}
                     </p>
                   </div>
