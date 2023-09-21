@@ -1,3 +1,4 @@
+<div>chạy: composer install</div>
 <div>tạo file env và config email và tên database</div>
 <div>
 chạy lệnh php artisan migrate --seed</div>
