@@ -3,6 +3,7 @@
 <div>chạy: php artisan key:generate</div>
 <div>
 chạy lệnh php artisan migrate --seed</div>
+chạy lệnh php artisan serve</div>
 <div>tài khoản admin: admin@gmail.com</div>
 <div>mật khẩu: 123</div>
 <div>vào trang admin tạo dữ liệu</div>
